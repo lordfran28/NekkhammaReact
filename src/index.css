@@ -3,6 +3,17 @@
   margin: 0;
   padding: 0;
 }
+/* keeping the footer at the bottom */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+/**/
 
 body {
   font-family: "Cormorant Garamond", serif;
@@ -61,21 +72,21 @@ main {
 }
 
 .essaysContainer {
-  background-color: greenyellow;
+  background-color: rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   gap: 80px;
 }
 
 .postsContainer {
-  background-color: greenyellow;
+  background-color: rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   gap: 80px;
 }
 
 .box {
-  background-color: red;
+  background-color: teal;
   width: 200px;
   height: 200px;
   margin: 10px;
