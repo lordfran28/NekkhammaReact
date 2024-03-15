@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import Forum from "./pages/Forum";
 import SignIn from "./pages/SignIn";
 import "./App.css";
+import Post from "./components/Post";
+import Essays from "./pages/Essays";
+import PaliCanon from "./pages/PaliCanon";
 
 export default function App() {
   return (
@@ -14,6 +17,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/forum/:id" element={<Post />} />
+          <Route path="/essays" element={<Essays />} />
+          <Route path="/paliCanon" element={<PaliCanon />} />
         </Route>
         <Route path="/signin" element={<SignIn />} />
       </Routes>
