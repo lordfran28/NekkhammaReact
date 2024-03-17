@@ -1,12 +1,7 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Forum.css";
-import { dummyData } from "../dummyData";
-import NewPost from "./NewPost";
 
-export default function Forum() {
-  const [posts, setPosts] = useState(dummyData);
-
+export default function Forum({ posts }) {
   // useEffect(() => {
   //   fetchPosts();
   // }, []);
