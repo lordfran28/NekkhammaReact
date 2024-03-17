@@ -1,0 +1,18 @@
+.post {
+  background: linear-gradient(to right, white, black);
+  padding: 30px;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.postTitle {
+  color: grey;
+  margin-bottom: 20px;
+}
+
+.postBody {
+  color: black;
+}
+
+.replyButton {
+    
+}

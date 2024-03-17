@@ -22,7 +22,7 @@ body {
 header {
   width: 100%;
   height: 175px;
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   text-align: left;
 }
 
@@ -33,7 +33,7 @@ header {
 }
 
 nav {
-  background-color: paleturquoise;
+  background-color: ;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,12 +41,13 @@ nav {
 
 a {
   text-decoration: solid;
+  color: #6c4d38;
   font-size: 13;
 }
 
 .navText {
   list-style: none;
-  background-color: yellow;
+  /* background-color: yellow;// */
   display: flex;
   justify-content: center;
   gap: 17px;

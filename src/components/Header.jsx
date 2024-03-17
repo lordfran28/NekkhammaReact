@@ -35,7 +35,7 @@ export default function Header() {
   }
 
   //if user is not logged in then set it to Guest, else their username
-  let displayName = username ? username : "Guest";
+  let displayName = username ? username : "";
 
   // capitalizing their username if logged in
   if (username) {
@@ -68,7 +68,7 @@ export default function Header() {
           </li>
           <li className="sign-in-out">
             <div>
-              <p>Hello {displayName}</p>
+              <p>{displayName}</p>
               <Link to={!username && "/signin"}>
                 <p onClick={handleSignOut}>{signInStatus}</p>
               </Link>

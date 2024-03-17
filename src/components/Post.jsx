@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./Post.css";
 
 export default function Post() {
   const params = useParams();
@@ -12,9 +13,20 @@ export default function Post() {
       .then((post) => setPost(post));
   }, []);
   return (
-    <div>
-      <h2>{post.title}</h2>
-      <p>{post.body}</p>
-    </div>
+    <>
+      <div className="post">
+        <h2 className='postTitle'>{post.title}</h2>
+        <p className='postBody'>{post.body}</p>
+      </div>
+      <div className="comments">
+      <button className='replyButt'>Add a comment</button>
+        <ul>
+          <li>Comment 1</li>
+          <li>Comment 2</li>
+          <li>Comment 3</li>
+        </ul>
+        
+      </div>
+    </>
   );
 }
