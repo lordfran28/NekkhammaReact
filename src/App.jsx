@@ -8,6 +8,7 @@ import "./App.css";
 import Post from "./components/Post";
 import Essays from "./pages/Essays";
 import PaliCanon from "./pages/PaliCanon";
+import NewPost from "./pages/NewPost";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/forum/:id" element={<Post />} />
           <Route path="/essays" element={<Essays />} />
           <Route path="/paliCanon" element={<PaliCanon />} />
+          <Route path="/newPost" element={<NewPost />} />
         </Route>
         <Route path="/signin" element={<SignIn />} />
       </Routes>

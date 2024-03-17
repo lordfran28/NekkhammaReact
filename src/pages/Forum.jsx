@@ -1,29 +1,32 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Forum.css";
+import { dummyData } from "../dummyData";
+import NewPost from "./NewPost";
 
 export default function Forum() {
-  const [posts, setPosts] = useState([]);
-  console.log(posts);
+  const [posts, setPosts] = useState(dummyData);
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
 
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch("https://dummyjson.com/posts");
-      const postsData = await response.json();
-      setPosts(postsData.posts);
-    } catch (error) {
-      console.error("Failed to fetch posts:", error);
-    }
-  };
+  // const fetchPosts = async () => {
+  //   try {
+  //     const response = await fetch("https://dummyjson.com/posts");
+  //     const postsData = await response.json();
+  //     setPosts(postsData.posts);
+  //   } catch (error) {
+  //     console.error("Failed to fetch posts:", error);
+  //   }
+  // };
 
   return (
     <div className="forumContainer">
       <h1>Discussions</h1>
-      <button className="startADiscussionButton">Start a discussion</button>
+      <Link to="/newPost">
+        <button className="startADiscussionButton">Start a discussion</button>
+      </Link>
       <ul className="threadContainer">
         {posts.map((post) => (
           <Link to={`${post.id}`} key={post.id}>
