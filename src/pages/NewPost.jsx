@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-export default function NewPost({ setPosts }) {
+export default function NewPost({ setPosts, username }) {
   const [newPost, setNewPost] = useState({
     id: uuidv4(),
+    author: username,
     title: "",
     body: "",
     createdAt: Date.now(),

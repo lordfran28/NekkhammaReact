@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./Forum.css";
 
 export default function Forum({ posts }) {
+  console.log(posts);
   // useEffect(() => {
   //   fetchPosts();
   // }, []);
@@ -25,7 +26,10 @@ export default function Forum({ posts }) {
       <ul className="threadContainer">
         {posts.map((post) => (
           <Link to={`${post.id}`} key={post.id}>
-            <li className="thread">{post.title}</li>
+            <li className="thread">
+              <div>{post.title}</div>
+              <div>{post.author}</div>
+            </li>
           </Link>
         ))}
       </ul>
