@@ -11,7 +11,6 @@ export default function Header() {
     const auth = getAuth(app);
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("User is signed in");
         const username = user.email.split("@")[0];
         setuserName(username);
       } else {

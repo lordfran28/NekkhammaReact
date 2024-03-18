@@ -1,33 +1,35 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Forum.css";
 
-export default function Forum() {
-  const [posts, setPosts] = useState([]);
+export default function Forum({ posts }) {
   console.log(posts);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch("https://dummyjson.com/posts");
-      const postsData = await response.json();
-      setPosts(postsData.posts);
-    } catch (error) {
-      console.error("Failed to fetch posts:", error);
-    }
-  };
+  // const fetchPosts = async () => {
+  //   try {
+  //     const response = await fetch("https://dummyjson.com/posts");
+  //     const postsData = await response.json();
+  //     setPosts(postsData.posts);
+  //   } catch (error) {
+  //     console.error("Failed to fetch posts:", error);
+  //   }
+  // };
 
   return (
     <div className="forumContainer">
       <h1>Discussions</h1>
-      <button className="startADiscussionButton">Start a discussion</button>
+      <Link to="/newPost">
+        <button className="startADiscussionButton">Start a discussion</button>
+      </Link>
       <ul className="threadContainer">
         {posts.map((post) => (
           <Link to={`${post.id}`} key={post.id}>
-            <li className="thread">{post.title}</li>
+            <li className="thread">
+              <div>{post.title}</div>
+              <div>{post.author}</div>
+            </li>
           </Link>
         ))}
       </ul>
