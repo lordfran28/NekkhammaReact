@@ -33,16 +33,25 @@ header {
 }
 
 nav {
-  background-color: ;
+  /* background-color: ; */
+ font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.navLink {
+  transition: all 0.3s ease in;
+
+}
+
+.navLink:hover {
+  font-size: 19.5px;
+
 }
 
 a {
   text-decoration: solid;
   color: #6c4d38;
-  font-size: 13;
 }
 
 .navText {

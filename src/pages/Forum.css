@@ -1,17 +1,17 @@
 .forumContainer {
   min-height: 800px;
   width: 100%;
-  background-color: rgba(17, 90, 208, 0.848);
-}
+  background: linear-gradient(white,#6c4d38)
+} 
 
 .threadContainer {
-  background-color: rgba(15, 4, 114, 0.363);
   list-style: none;
   padding: 25px;
 }
 
 .thread {
-  background-color: rgb(130, 129, 221);
+  /* background: linear-gradient(#422c1d, rgb(129, 129, 129)  );s */
+  box-shadow: 20px 20px 50px  rgb(57, 38, 14);
   margin: 25px 0;
   padding: 25px;
   font-size: 20px;
@@ -22,19 +22,26 @@
 }
 
 .thread:hover {
-  background-color: rgb(98, 96, 226);
+  background-color: rgba(255, 255, 255, 0.26);
 }
 
 .startADiscussionButton {
-  padding: 15px;
-  font-size: 20px;
-  margin-right: 30px;
-  border: none;
-  transition: 0.3s;
+  margin-top: 65px;
+  margin-left: 40px;
+  color: white;
+  padding: 12px 20px;
+  font-size: 18px;
+  margin-right: 20px;
+  border: 2px solid #685902ad; /* Muted gold border */
+  border-radius: 8px;
+  background-color: #685902ad; /* Muted gold background color */
+  transition: all 0.3s ease;
   cursor: pointer;
+
+
 }
 
 .startADiscussionButton:hover {
-  background-color: gray;
-  color: white;
+    background-color: #e0bb00; /* Darker gold on hover */
+    border-color: #e0bb00; /* Darker gold border on hover */
 }

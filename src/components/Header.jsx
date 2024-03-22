@@ -51,21 +51,21 @@ export default function Header() {
       <nav>
         <ul className="navText">
           <li>
-            <Link to="/">Home</Link>
+            <Link className="navLink" to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link className="navLink" to="/about">About</Link>
           </li>
           <li>
-            <Link to="/forum">Forum</Link>
+            <Link className="navLink" to="/forum">Forum</Link>
           </li>
           <li>
-            <Link to="/essays">Essays</Link>
+            <Link className="navLink" to="/essays">Essays</Link>
           </li>
           <li>
-            <Link to="/paliCanon">Pali Canon</Link>
+            <Link className="navLink" to="/paliCanon">Pali Canon</Link>
           </li>
-          <li className="sign-in-out">
+          <li className="sign-in-out navLink" >
             <div>
               <p>{displayName}</p>
               <Link to={!username && "/signin"}>
