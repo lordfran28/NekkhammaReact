@@ -29,7 +29,7 @@ export default function App() {
     });
   }, []);
 
-  const [posts, setPosts] = useState([]);
+
 
   return (
     <BrowserRouter>
@@ -37,16 +37,16 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/forum" element={<Forum posts={posts} />} />
+          <Route path="/forum" element={<Forum />} />
           <Route
             path="/forum/:id"
-            element={<Post posts={posts} setPosts={setPosts} />}
+            element={<Post />}
           />
           <Route path="/essays" element={<Essays />} />
           <Route path="/paliCanon" element={<PaliCanon />} />
           <Route
             path="/newPost"
-            element={<NewPost setPosts={setPosts} username={username} />}
+            element={<NewPost  username={username} />}
           />
         </Route>
         <Route path="/signin" element={<SignIn />} />

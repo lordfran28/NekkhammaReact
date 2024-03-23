@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-export default function NewPost({ setPosts, username }) {
+export default function NewPost({ username }) {
   const [newPost, setNewPost] = useState({
     author: username,
     title: "",
@@ -25,11 +25,14 @@ export default function NewPost({ setPosts, username }) {
     });
   }
 
-  async function post() {
-    setPosts((prevPosts) => {
-      return [newPost, ...prevPosts];
-    });
+  // view 1 - all posts (done)
+  // view 2 - details of a post (done)
+  // view 3 - new post form (home work)
+  // -- send the new post to DB
+  // -- wait for the DB to say okay, ive saved it
+  // -- then redirect user the the forum path in router
 
+  async function post() {
     // firebase firestore logic here for adding post to the DB
     try {
       const docRef = await addDoc(collection(db, "posts"), {
