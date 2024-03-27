@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import "./Forum.css";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
+import { Spinner } from "../components/Spinner";
 
 export default function Forum() {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  useEffect(getPosts, []);
+
+  function getPosts() {
     console.log("Forum component is mounted and state is empty", posts);
     // Whatver we do here, is done after the component is rendered
     getDocs(collection(db, "posts")).then((querySnapshot) => {
@@ -22,13 +25,21 @@ export default function Forum() {
       );
       setPosts(formatted);
     });
-  }, []);
+  }
 
   async function handleDelete(e, id) {
     e.preventDefault();
-    alert("delete post: " + id);
-    console.log(id);
+    const postRef = doc(db, "posts", id);
+    try {
+      await deleteDoc(postRef);
+      alert("post deleted");
+      getPosts();
+    } catch (error) {
+      alert(error.message);
+    }
   }
+
+  if (posts.length === 0) return <Spinner />;
 
   return (
     <div className="forumContainer">
