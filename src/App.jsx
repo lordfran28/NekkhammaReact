@@ -29,8 +29,6 @@ export default function App() {
     });
   }, []);
 
-
-
   return (
     <BrowserRouter>
       <Routes>
@@ -38,16 +36,10 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/forum" element={<Forum />} />
-          <Route
-            path="/forum/:id"
-            element={<Post />}
-          />
+          <Route path="/forum/:id" element={<Post username={username} />} />
           <Route path="/essays" element={<Essays />} />
           <Route path="/paliCanon" element={<PaliCanon />} />
-          <Route
-            path="/newPost"
-            element={<NewPost  username={username} />}
-          />
+          <Route path="/newPost" element={<NewPost username={username} />} />
         </Route>
         <Route path="/signin" element={<SignIn />} />
       </Routes>

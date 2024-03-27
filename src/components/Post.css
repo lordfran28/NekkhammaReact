@@ -13,44 +13,52 @@
   color: black;
 } */
 
-
 /* chatgpt */
-
 
 .post {
   border-radius: 10px;
   background-color: #f5f5f5; /* Light gray background */
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 25px;
+  margin: 20px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); Soft shadow */
+  box-shadow: 0 0 10px rgb(57, 38, 14);
   transition: box-shadow 0.3s ease; /* Smooth transition */
+  margin-bottom: 100px;
 }
 
 .postTitle {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 32px;
+  margin-bottom: 20px;
 }
 
 .postBody {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
+  text-align: justify;
 }
 
 .comments-section {
   border-radius: 10px;
-  background: linear-gradient(to bottom right, #6c4d38, #ffffff); /* Gradient background */
+  background: linear-gradient(to bottom right, #6c4d38, #ffffff);
+  /* Gradient background */
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); Soft shadow */
+  box-shadow: 0 0 10px rgb(57, 38, 14);
+
   transition: box-shadow 0.3s ease; /* Smooth transition */
+  overflow-y: scroll;
+  margin: 20px;
+  margin-bottom: 200px;
 }
 
 .comments-section input[type="text"] {
-  width: calc(100% - 70px);
+  width: 100%;
   padding: 10px;
   border: none;
   border-radius: 5px;
   margin-right: 10px;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
 }
 
 .comments-section input[type="text"]::placeholder {
@@ -86,5 +94,6 @@
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Soft shadow */
+  box-shadow: 0 0 10px rgb(57, 38, 14);
 }
