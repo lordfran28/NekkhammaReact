@@ -1,11 +1,11 @@
 import "./NewPost.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { Link, useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export default function NewPost({ username }) {
+  const navigate = useNavigate();
   const [newPost, setNewPost] = useState({
     author: username,
     title: "",
@@ -47,6 +47,7 @@ export default function NewPost({ username }) {
         comments: [],
       });
       alert("Document written with ID: ", docRef.id);
+      navigate("/forum");
     } catch (e) {
       console.log("Error adding document: ", e);
     }
@@ -70,11 +71,10 @@ export default function NewPost({ username }) {
         className="newPost__postInput"
         onChange={handleChange}
       />
-      <Link to="/forum">
-        <button className="newPost__button" onClick={post}>
-          Post
-        </button>
-      </Link>
+
+      <button className="newPost__button" onClick={post}>
+        Post
+      </button>
     </div>
   );
 }

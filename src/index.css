@@ -28,25 +28,22 @@ header {
 
 .logo {
   width: 150px;
-  margin-left: 15px;
-  margin-top: 15px;
+  margin: 25px;
 }
 
 nav {
   /* background-color: ; */
- font-size: 18px;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .navLink {
   transition: all 0.3s ease in;
-
 }
 
 .navLink:hover {
   font-size: 19.5px;
-
 }
 
 a {
