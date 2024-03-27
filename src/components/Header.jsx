@@ -32,7 +32,7 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
   // user sign-in status
   let signInStatus = username ? "Sign Out" : "Sign In";
   return (
-    <>
+    <div>
       <header>
         <img src={logo1} className="logo" alt="logo" />
       </header>
@@ -73,6 +73,6 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
           </li>
         </ul>
       </nav>
-    </>
+    </div>
   );
 }

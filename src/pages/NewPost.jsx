@@ -1,12 +1,13 @@
 import "./NewPost.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-export default function NewPost({ username }) {
+export default function NewPost({ username, currentUserId }) {
   const navigate = useNavigate();
   const [newPost, setNewPost] = useState({
+    userId: currentUserId,
     author: username,
     title: "",
     body: "",
@@ -40,16 +41,17 @@ export default function NewPost({ username }) {
     // firebase firestore logic here for adding post to the DB
     try {
       const docRef = await addDoc(collection(db, "posts"), {
+        userId: currentUserId,
         author: username,
         title: newPost.title,
         body: newPost.body,
         createdAt: Date.now(),
         comments: [],
       });
-      alert("Document written with ID: ", docRef.id);
+      console.log("Document written with ID: ", docRef.id);
       navigate("/forum");
     } catch (e) {
-      console.log("Error adding document: ", e);
+      alert("Error adding document: ", e.message);
     }
   }
 

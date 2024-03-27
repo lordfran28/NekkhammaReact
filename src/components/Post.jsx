@@ -19,8 +19,6 @@ export default function Post({ username, isUserLoggedIn }) {
   const [post, setPost] = useState();
   const [comment, setComment] = useState("");
 
-  console.log(post);
-
   const params = useParams();
   useEffect(() => getPost, []);
 
@@ -119,7 +117,7 @@ export default function Post({ username, isUserLoggedIn }) {
     <>
       {!post && <Spinner />}
       {post && (
-        <>
+        <div className="container">
           <div className="post">
             <h2 className="postTitle">{post?.title}</h2>
             <p className="postBody">{post?.body}</p>
@@ -148,7 +146,7 @@ export default function Post({ username, isUserLoggedIn }) {
             )}
             <ul>{getCommentsEl()}</ul>
           </div>
-        </>
+        </div>
       )}
     </>
   );

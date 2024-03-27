@@ -48,31 +48,8 @@ export default function SignIn() {
   }
 
   return (
-    // <div className="logInContainer">
-    //   <h2>Registration</h2>
-    //   <input
-    //     type="email"
-    //     placeholder="email"
-    //     id="emailInput"
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   />
-    //   <br />
-    //   <input
-    //     type="password"
-    //     placeholder="password"
-    //     id="passwordInput"
-    //     onChange={(e) => setPassword(e.target.value)}
-    //   />
-    //   <br />
-    //   <button id="signInBtn" onClick={signIn}>
-    //     Sign in
-    //   </button>
-    //   <button id="enterBtn" onClick={register}>
-    //     Register
-    //   </button>
-    // </div>
     <div className="container">
-      <h1 style={{ marginTop: "50px" }}>Login</h1>
+      <h1 style={{ marginTop: "50px" }}>Sign in / Register </h1>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -82,7 +59,7 @@ export default function SignIn() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            We will never share your email with anyone else.
           </Form.Text>
         </Form.Group>
 
@@ -102,7 +79,7 @@ export default function SignIn() {
           style={{ marginRight: "10px" }}
           onClick={signIn}
         >
-          Login
+          Sign in
         </Button>
         <Button variant="secondary" onClick={register}>
           Register

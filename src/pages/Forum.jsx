@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { Spinner } from "../components/Spinner";
 
-export default function Forum({ isUserLoggedIn }) {
+export default function Forum({ isUserLoggedIn, currentUserId }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(getPosts, []);
@@ -32,7 +32,6 @@ export default function Forum({ isUserLoggedIn }) {
     const postRef = doc(db, "posts", id);
     try {
       await deleteDoc(postRef);
-      alert("post deleted");
       getPosts();
     } catch (error) {
       alert(error.message);
@@ -40,9 +39,9 @@ export default function Forum({ isUserLoggedIn }) {
   }
 
   if (posts.length === 0) return <Spinner />;
-  console.log("isUserLoggedIn = " + isUserLoggedIn);
+
   return (
-    <div className="forumContainer">
+    <div className="forumContainer container">
       {isUserLoggedIn && (
         <Link to="/newPost">
           <button className="startADiscussionButton">Start a discussion</button>
@@ -50,7 +49,7 @@ export default function Forum({ isUserLoggedIn }) {
       )}
       {!isUserLoggedIn && (
         <p style={{ marginLeft: "25px", color: "#6c4d38" }}>
-          You need to be logged in to start a discussion.
+          You need to be signed in to start a discussion.
         </p>
       )}
       <ul className="threadContainer">
@@ -60,13 +59,25 @@ export default function Forum({ isUserLoggedIn }) {
               <div>{post.title}</div>
               <div style={{ display: "flex", gap: "20px" }}>
                 <div>{post.author}</div>
-                <div>{new Date(post.createdAt).toLocaleDateString("en")}</div>
-                <button
-                  className="btn btn-outline-danger"
-                  onClick={(e) => handleDelete(e, post.id)}
-                >
-                  Delete
-                </button>
+                <div>
+                  <span style={{ marginRight: "15px" }}>
+                    {new Date(post.createdAt).toLocaleDateString("en")}
+                  </span>
+                  <span>
+                    {new Date(post.createdAt).toLocaleString("en", {
+                      hour: "numeric",
+                      minute: "numeric",
+                    })}
+                  </span>
+                </div>
+                {isUserLoggedIn && post.userId === currentUserId && (
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={(e) => handleDelete(e, post.id)}
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </li>
           </Link>
