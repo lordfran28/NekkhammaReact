@@ -51,22 +51,32 @@ export default function Header() {
       <nav>
         <ul className="navText">
           <li>
-            <Link className="navLink" to="/">Home</Link>
+            <Link className="navLink" to="/">
+              Home
+            </Link>
           </li>
           <li>
-            <Link className="navLink" to="/about">About</Link>
+            <Link className="navLink" to="/about">
+              About
+            </Link>
           </li>
           <li>
-            <Link className="navLink" to="/forum">Forum</Link>
+            <Link className="navLink" to="/forum">
+              Forum
+            </Link>
           </li>
           <li>
-            <Link className="navLink" to="/essays">Essays</Link>
+            <Link className="navLink" to="/essays">
+              Essays
+            </Link>
           </li>
           <li>
-            <Link className="navLink" to="/paliCanon">Pali Canon</Link>
+            <Link className="navLink" to="/paliCanon">
+              Pali Canon
+            </Link>
           </li>
-          <li className="sign-in-out navLink" >
-            <div>
+          <li className="sign-in-out navLink">
+            <div style={{ display: "flex", gap: "20px" }}>
               <p>{displayName}</p>
               <Link to={!username && "/signin"}>
                 <p onClick={handleSignOut}>{signInStatus}</p>
