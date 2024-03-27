@@ -64,6 +64,25 @@ export default function Post({ username }) {
       console.error("Error adding comment: ", error.code, error.message);
     }
   }
+  async function deleteComment(id) {
+    const postRef = doc(db, "posts", post.id);
+    try {
+      const postDoc = await getDoc(postRef);
+      if (postDoc.exists()) {
+        const postData = postDoc.data();
+        const updatedComments = postData.comments.filter(
+          (comment) => comment.id !== id
+        );
+        await updateDoc(postRef, { comments: updatedComments });
+        alert("Comment deleted");
+        getPost();
+      } else {
+        console.error("Document does not exist");
+      }
+    } catch (error) {
+      console.error("Error deleting comment: ", error.code, error.message);
+    }
+  }
 
   function getCommentsEl() {
     return post.comments.map((comment) => {
@@ -84,6 +103,9 @@ export default function Post({ username }) {
             <div>{new Date(post.createdAt).toLocaleDateString("en")}</div>
           </div>
           <div style={{ padding: "10px" }}>{comment.body}</div>
+          <div>
+            <button onClick={() => deleteComment(comment.id)}>Delete</button>
+          </div>
         </li>
       );
     });
