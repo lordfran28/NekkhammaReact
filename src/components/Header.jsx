@@ -34,7 +34,9 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
   return (
     <div>
       <header>
-        <img src={logo1} className="logo" alt="logo" />
+        <Link to="/">
+          <img src={logo1} className="logo" alt="logo" />
+        </Link>
       </header>
       <nav>
         <ul className="navText">
