@@ -4,26 +4,32 @@ import { v4 as uuidv4 } from "uuid";
 import "./Post.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase";
-import { DocumentSnapshot, collection, query, where, getDocs, documentId } from "firebase/firestore";
+import {
+  DocumentSnapshot,
+  collection,
+  query,
+  where,
+  getDocs,
+  documentId,
+} from "firebase/firestore";
 import { db } from "../firebase";
-import {Spinner } from "./Spinner";
-
-
+import { Spinner } from "./Spinner";
 
 export default function Post({ posts, setPosts }) {
   const [post, setPost] = useState();
   const params = useParams();
 
-
   useEffect(() => {
-   const postsRef = collection(db, "posts");
-  const q = query(postsRef, where(documentId(), "==", params.id));
- getDocs(q).then((querySnapshot)=>{
-  const formattedPosts = querySnapshot.docs.map((doc) => {
-    return { id: doc.id, ...doc.data() };
-  });
-  setPost(formattedPosts[0]);
-})  
+    async function getPost() {
+      const postsRef = collection(db, "posts");
+      const q = query(postsRef, where(documentId(), "==", params.id));
+      const querySnapshot = await getDocs(q);
+      const formattedPosts = querySnapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
+      setPost(formattedPosts[0]);
+    }
+    getPost();
   }, []);
   // const post = posts.find((post) => post.id == params.id);
   // const [comment, setComment] = useState("");
@@ -70,11 +76,13 @@ export default function Post({ posts, setPosts }) {
 
   return (
     <>
-    {post && <div className="post">
-      <h2 className="postTitle">{post?.title}</h2>
-      <p className="postBody">{post?.body}</p>
-    </div>}
-    {!post && <Spinner/>}
+      {post && (
+        <div className="post">
+          <h2 className="postTitle">{post?.title}</h2>
+          <p className="postBody">{post?.body}</p>
+        </div>
+      )}
+      {!post && <Spinner />}
       {/* <div className="comments-section">
         <input
           type="text"
