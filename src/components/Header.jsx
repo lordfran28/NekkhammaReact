@@ -1,23 +1,9 @@
-import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
-import { app } from "../firebase";
 import logo1 from "../assets/logo1.png";
 
-export default function Header() {
-  const [username, setuserName] = useState("");
-
-  useEffect(() => {
-    const auth = getAuth(app);
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const username = user.email.split("@")[0];
-        setuserName(username);
-      } else {
-        console.log("User is signed out");
-      }
-    });
-  }, []);
+export default function Header({ setIsUserLoggedIn, setuserName, username }) {
+  // const navigate = useNavigate();
 
   function handleSignOut() {
     const auth = getAuth();
@@ -26,6 +12,8 @@ export default function Header() {
         .then(() => {
           setuserName("");
           console.log("Sign-out successful");
+          setIsUserLoggedIn(false);
+          // navigate("/");
         })
         .catch((error) => {
           console.log("An error happened. while loggin out", error);

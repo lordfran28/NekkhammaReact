@@ -15,9 +15,11 @@ import {
 import { db } from "../firebase";
 import { Spinner } from "./Spinner";
 
-export default function Post({ username }) {
+export default function Post({ username, isUserLoggedIn }) {
   const [post, setPost] = useState();
   const [comment, setComment] = useState("");
+
+  console.log(post);
 
   const params = useParams();
   useEffect(() => getPost, []);
@@ -103,9 +105,11 @@ export default function Post({ username }) {
             <div>{new Date(post.createdAt).toLocaleDateString("en")}</div>
           </div>
           <div style={{ padding: "10px" }}>{comment.body}</div>
-          <div>
-            <button onClick={() => deleteComment(comment.id)}>Delete</button>
-          </div>
+          {comment.author === username && (
+            <div>
+              <button onClick={() => deleteComment(comment.id)}>Delete</button>
+            </div>
+          )}
         </li>
       );
     });
@@ -121,18 +125,27 @@ export default function Post({ username }) {
             <p className="postBody">{post?.body}</p>
           </div>
           <div className="comments-section">
-            <input
-              type="text"
-              placeholder="add a comment..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <button
-              onClick={addComment}
-              style={{ marginBottom: "30px", marginTop: "10px" }}
-            >
-              Enter
-            </button>
+            {isUserLoggedIn && (
+              <div className="commentInput">
+                <input
+                  type="text"
+                  placeholder="add a comment..."
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button
+                  onClick={addComment}
+                  style={{ marginBottom: "30px", marginTop: "10px" }}
+                >
+                  Enter
+                </button>
+              </div>
+            )}
+            {!isUserLoggedIn && (
+              <div style={{ color: "white", fontSize: "20px" }}>
+                Please Sign In to add comments
+              </div>
+            )}
             <ul>{getCommentsEl()}</ul>
           </div>
         </>

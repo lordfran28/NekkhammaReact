@@ -16,6 +16,7 @@ import "./App.css";
 
 export default function App() {
   const [username, setuserName] = useState("");
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -23,6 +24,7 @@ export default function App() {
       if (user) {
         const username = user.email.split("@")[0];
         setuserName(username);
+        setIsUserLoggedIn(true);
       } else {
         console.log("User is signed out");
       }
@@ -32,11 +34,27 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
+        <Route
+          element={
+            <Layout
+              setIsUserLoggedIn={setIsUserLoggedIn}
+              setuserName={setuserName}
+              username={username}
+            />
+          }
+        >
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/forum" element={<Forum />} />
-          <Route path="/forum/:id" element={<Post username={username} />} />
+          <Route
+            path="/forum"
+            element={<Forum isUserLoggedIn={isUserLoggedIn} />}
+          />
+          <Route
+            path="/forum/:id"
+            element={
+              <Post username={username} isUserLoggedIn={isUserLoggedIn} />
+            }
+          />
           <Route path="/essays" element={<Essays />} />
           <Route path="/paliCanon" element={<PaliCanon />} />
           <Route path="/newPost" element={<NewPost username={username} />} />

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { Spinner } from "../components/Spinner";
 
-export default function Forum() {
+export default function Forum({ isUserLoggedIn }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(getPosts, []);
@@ -40,12 +40,19 @@ export default function Forum() {
   }
 
   if (posts.length === 0) return <Spinner />;
-
+  console.log("isUserLoggedIn = " + isUserLoggedIn);
   return (
     <div className="forumContainer">
-      <Link to="/newPost">
-        <button className="startADiscussionButton">Start a discussion</button>
-      </Link>
+      {isUserLoggedIn && (
+        <Link to="/newPost">
+          <button className="startADiscussionButton">Start a discussion</button>
+        </Link>
+      )}
+      {!isUserLoggedIn && (
+        <p style={{ marginLeft: "25px", color: "#6c4d38" }}>
+          You need to be logged in to start a discussion.
+        </p>
+      )}
       <ul className="threadContainer">
         {posts.map((post) => (
           <Link to={`${post.id}`} key={post.id}>
