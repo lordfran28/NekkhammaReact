@@ -50,11 +50,7 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
               About
             </Link>
           </li>
-          <li>
-            <Link className="navLink" to="/forum">
-              Forum
-            </Link>
-          </li>
+
           <li>
             <Link className="navLink" to="/essays">
               Essays
@@ -63,6 +59,11 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
           <li>
             <Link className="navLink" to="/paliCanon">
               Pali Canon
+            </Link>
+          </li>
+          <li>
+            <Link className="navLink" to="/forum">
+              Forum
             </Link>
           </li>
           <li className="sign-in-out navLink">

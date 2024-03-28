@@ -17,6 +17,7 @@ footer {
 
 body {
   font-family: "Cormorant Garamond", serif;
+  color: #432009;
 }
 
 header {
@@ -48,11 +49,11 @@ nav {
   align-items: center;
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   nav {
     display: none;
   }
-}
+} */
 
 a {
   text-decoration: solid;
@@ -63,6 +64,7 @@ a {
   list-style: none;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 17px;
   width: 100%;
 }

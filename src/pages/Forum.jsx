@@ -7,6 +7,7 @@ import { Spinner } from "../components/Spinner";
 
 export default function Forum({ isUserLoggedIn, currentUserId }) {
   const [posts, setPosts] = useState([]);
+  console.log("current userID =" + currentUserId);
 
   useEffect(getPosts, []);
 
@@ -23,7 +24,9 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
         "Formatted data that a normal person can understand:",
         formatted
       );
-      setPosts(formatted);
+      // sorting the post by time
+      const sorted = formatted.toSorted((a, b) => b.createdAt - a.createdAt);
+      setPosts(sorted);
     });
   }
 
@@ -57,9 +60,12 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
           <Link to={`${post.id}`} key={post.id}>
             <li className="thread">
               <div>{post.title}</div>
-              <div style={{ display: "flex", gap: "20px" }}>
+              <div
+                style={{ display: "flex", gap: "20px", alignItems: "center" }}
+                className="postInfo"
+              >
                 <div>{post.author}</div>
-                <div>
+                <div className="postDateAndTime" style={{ fontSize: "12px" }}>
                   <span style={{ marginRight: "15px" }}>
                     {new Date(post.createdAt).toLocaleDateString("en")}
                   </span>
@@ -70,9 +76,10 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
                     })}
                   </span>
                 </div>
+
                 {isUserLoggedIn && post.userId === currentUserId && (
                   <button
-                    className="btn btn-outline-danger"
+                    className="btn btn-outline-secondary"
                     onClick={(e) => handleDelete(e, post.id)}
                   >
                     Delete

@@ -1,20 +1,13 @@
 .forumContainer {
-  /* min-height: 800px; */
-  /* width: 100%; */
-  /* background: linear-gradient(white, #6c4d38); */
 }
 
 .threadContainer {
   list-style: none;
   padding: 25px;
-  /* overflow-y: scroll;
-  height: 800px; */
   padding-bottom: 100px;
 }
 
 .thread {
-  /* background: linear-gradient(#422c1d, rgb(129, 129, 129)  );s */
-  /* box-shadow: 20px 20px 50px  rgb(57, 38, 14); */
   box-shadow: 0 0 10px rgb(57, 38, 14);
   margin: 25px 0;
   padding: 25px;
@@ -25,8 +18,21 @@
   transition: 0.3s;
 }
 
+@media (max-width: 500px) {
+  .thread {
+    flex-direction: column;
+    gap: 50px;
+    font-size: 16px;
+  }
+  .postInfo {
+    background-color: #e0bb002f;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .thread:hover {
-  /* background-color: #f6da4fae; */
   scale: 1.02;
 }
 .thread:active {
@@ -41,9 +47,9 @@
   padding: 12px 20px;
   font-size: 18px;
   margin-right: 20px;
-  border: 2px solid #685902ad; /* Muted gold border */
   border-radius: 8px;
-  background-color: #685902ad; /* Muted gold background color */
+  background-color: #432009;
+  border: none;
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 0 10px rgb(57, 38, 14);
@@ -53,6 +59,15 @@
 }
 
 .startADiscussionButton:hover {
-  background-color: #e0bb00; /* Darker gold on hover */
-  border-color: #e0bb00; /* Darker gold border on hover */
+  background-color: #e0bb00;
+}
+
+.btn-outline-secondary {
+  border-color: #432009 !important;
+  color: #432009 !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #432009 !important;
+  color: white !important;
 }

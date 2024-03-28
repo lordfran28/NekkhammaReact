@@ -1,6 +1,6 @@
 export default function PaliCanon() {
   return (
-    <div className="container">
+    <div className="container" style={{ marginBottom: "200px" }}>
       <h1 className="display-4 mt-3 mb-3">Pali Canon</h1>
       <p className="lead">
         The Pali Canon is the oldest surviving Buddhist scripture. It is a

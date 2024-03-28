@@ -29,6 +29,11 @@ export default function Post({ username, isUserLoggedIn }) {
     const formattedPosts = querySnapshot.docs.map((doc) => {
       return { id: doc.id, ...doc.data() };
     });
+    console.log("formattedPosts =>", formattedPosts[0]);
+    // sorting the post by time
+    const sorted = formattedPosts[0].comments.toSorted(
+      (a, b) => b.createdAt - a.createdAt
+    );
     setPost(formattedPosts[0]);
   }
 
@@ -85,42 +90,48 @@ export default function Post({ username, isUserLoggedIn }) {
   }
 
   function getCommentsEl() {
-    return post.comments.map((comment) => {
-      return (
-        <li key={comment.id}>
-          <div
-            className="comment-info"
-            style={{
-              display: "flex",
-              gap: "10px",
-              justifyContent: "space-between",
-              background: "#f2f2f2",
-              alignItems: "center",
-              padding: "0 10px",
-            }}
-          >
-            <strong style={{ fontSize: "22px" }}>{comment.author}</strong>
-            <div>
-              <span style={{ marginRight: "15px" }}>
-                {new Date(post.createdAt).toLocaleDateString("en")}
-              </span>
-              <span>
-                {new Date(post.createdAt).toLocaleString("en", {
-                  hour: "numeric",
-                  minute: "numeric",
-                })}
-              </span>
+    return post.comments
+      .toSorted((a, b) => b.createdAt - a.createdAt)
+      .map((comment) => {
+        return (
+          <li key={comment.id}>
+            <div
+              className="comment-info"
+              style={{
+                display: "flex",
+                gap: "10px",
+                justifyContent: "space-between",
+                background: "#f2f2f2",
+                alignItems: "center",
+                padding: "0 10px",
+              }}
+            >
+              <strong style={{ fontSize: "22px" }}>{comment.author}</strong>
+              <div style={{ fontSize: "12px" }}>
+                <span style={{ marginRight: "15px" }}>
+                  {new Date(post.createdAt).toLocaleDateString("en")}
+                </span>
+                <span>
+                  {new Date(post.createdAt).toLocaleString("en", {
+                    hour: "numeric",
+                    minute: "numeric",
+                  })}
+                </span>
+              </div>
             </div>
-          </div>
-          <div style={{ padding: "10px" }}>{comment.body}</div>
-          {comment.author === username && (
-            <div>
-              <button onClick={() => deleteComment(comment.id)}>Delete</button>
+            <div style={{ padding: "10px", margin: "20px 0" }}>
+              {comment.body}
             </div>
-          )}
-        </li>
-      );
-    });
+            {comment.author === username && (
+              <div>
+                <button onClick={() => deleteComment(comment.id)}>
+                  Delete
+                </button>
+              </div>
+            )}
+          </li>
+        );
+      });
   }
 
   return (
