@@ -100,7 +100,17 @@ export default function Post({ username, isUserLoggedIn }) {
             }}
           >
             <strong style={{ fontSize: "22px" }}>{comment.author}</strong>
-            <div>{new Date(post.createdAt).toLocaleDateString("en")}</div>
+            <div>
+              <span style={{ marginRight: "15px" }}>
+                {new Date(post.createdAt).toLocaleDateString("en")}
+              </span>
+              <span>
+                {new Date(post.createdAt).toLocaleString("en", {
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </span>
+            </div>
           </div>
           <div style={{ padding: "10px" }}>{comment.body}</div>
           {comment.author === username && (
