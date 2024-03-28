@@ -1,0 +1,76 @@
+.dhammaChakka-container {
+  display: flex;
+  justify-content: center;
+}
+.outer-circle {
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  border: 10px solid #432009;
+  box-shadow: 0px 0px 10px gold;
+}
+.inner-circle {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  z-index: 10;
+  border: 10px solid #432009;
+  box-shadow: inset 0px 0px 10px gold;
+}
+.handle-1 {
+  width: 10px;
+  height: 150px;
+  background: black;
+  border-radius: 10px;
+  position: absolute;
+  rotate: 90deg;
+}
+.handle-2 {
+  width: 10px;
+  height: 150px;
+  background: black;
+  border-radius: 10px;
+  position: absolute;
+}
+.handle-3 {
+  width: 10px;
+  height: 150px;
+  background: black;
+  border-radius: 10px;
+  position: absolute;
+  rotate: 45deg;
+}
+.handle-4 {
+  width: 10px;
+  height: 150px;
+  background: black;
+  border-radius: 10px;
+  position: absolute;
+  rotate: 135deg;
+}
+.handle-1,
+.handle-2,
+.handle-3,
+.handle-4 {
+  background: #432009;
+  box-shadow: 0 0 100px gold;
+}
+@keyframes spin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+.dhammaChakka {
+  animation: spin 60s linear infinite;
+  scale: 0.7;
+}

@@ -1,6 +1,7 @@
 import { getAuth, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
 import logo1 from "../assets/logo1.png";
+import DropdownUserMenu from "./DropdownUserMenu";
 
 export default function Header({ setIsUserLoggedIn, setuserName, username }) {
   // const navigate = useNavigate();
@@ -75,6 +76,9 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
             </div>
           </li>
         </ul>
+        {/* <div className="dropdown-container">
+          <DropdownUserMenu />
+        </div> */}
       </nav>
     </div>
   );
