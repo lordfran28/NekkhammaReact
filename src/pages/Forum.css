@@ -26,10 +26,12 @@
 }
 
 .thread:hover {
-  background-color: #f6da4fae;
+  /* background-color: #f6da4fae; */
+  scale: 1.02;
 }
 .thread:active {
-  box-shadow: none;
+  box-shadow: 0 0 10px rgba(57, 38, 14, 0.286);
+  scale: 1;
 }
 
 .startADiscussionButton {
