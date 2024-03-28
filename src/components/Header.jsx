@@ -67,15 +67,21 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
               Forum
             </Link>
           </li>
-          <li className="sign-in-out navLink">
-            <div style={{ display: "flex", gap: "20px" }}>
-              <p>{displayName}</p>
-              <Link to={!username && "/signin"}>
-                <p onClick={handleSignOut}>{signInStatus}</p>
-              </Link>
-            </div>
-          </li>
+          {/* <li className="sign-in-out navLink"></li> */}
         </ul>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "20px",
+            width: "150px",
+          }}
+        >
+          <p>{displayName}</p>
+          <Link to={!username && "/signin"}>
+            <p onClick={handleSignOut}>{signInStatus}</p>
+          </Link>
+        </div>
         {/* <div className="dropdown-container">
           <DropdownUserMenu />
         </div> */}

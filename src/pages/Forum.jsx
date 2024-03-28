@@ -7,7 +7,7 @@ import { Spinner } from "../components/Spinner";
 
 export default function Forum({ isUserLoggedIn, currentUserId }) {
   const [posts, setPosts] = useState([]);
-  console.log("current userID =" + currentUserId);
+  const [postSearch, setPostSearch] = useState("");
 
   useEffect(getPosts, []);
 
@@ -55,40 +55,52 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
           You need to be signed in to start a discussion.
         </p>
       )}
+      <div className="posts-search-container">
+        <input
+          type="text"
+          className="form-control search-posts-input"
+          placeholder="Search posts..."
+          onChange={(e) => setPostSearch(e.target.value)}
+        />
+      </div>
       <ul className="threadContainer">
-        {posts.map((post) => (
-          <Link to={`${post.id}`} key={post.id}>
-            <li className="thread">
-              <div>{post.title}</div>
-              <div
-                style={{ display: "flex", gap: "20px", alignItems: "center" }}
-                className="postInfo"
-              >
-                <div>{post.author}</div>
-                <div className="postDateAndTime" style={{ fontSize: "12px" }}>
-                  <span style={{ marginRight: "15px" }}>
-                    {new Date(post.createdAt).toLocaleDateString("en")}
-                  </span>
-                  <span>
-                    {new Date(post.createdAt).toLocaleString("en", {
-                      hour: "numeric",
-                      minute: "numeric",
-                    })}
-                  </span>
-                </div>
+        {posts
+          .filter((post) =>
+            post.title.toLowerCase().includes(postSearch.toLowerCase())
+          )
+          .map((post) => (
+            <Link to={`${post.id}`} key={post.id}>
+              <li className="thread">
+                <div>{post.title}</div>
+                <div
+                  style={{ display: "flex", gap: "20px", alignItems: "center" }}
+                  className="postInfo"
+                >
+                  <div>{post.author}</div>
+                  <div className="postDateAndTime" style={{ fontSize: "12px" }}>
+                    <span style={{ marginRight: "15px" }}>
+                      {new Date(post.createdAt).toLocaleDateString("en")}
+                    </span>
+                    <span>
+                      {new Date(post.createdAt).toLocaleString("en", {
+                        hour: "numeric",
+                        minute: "numeric",
+                      })}
+                    </span>
+                  </div>
 
-                {isUserLoggedIn && post.userId === currentUserId && (
-                  <button
-                    className="btn btn-outline-secondary"
-                    onClick={(e) => handleDelete(e, post.id)}
-                  >
-                    Delete
-                  </button>
-                )}
-              </div>
-            </li>
-          </Link>
-        ))}
+                  {isUserLoggedIn && post.userId === currentUserId && (
+                    <button
+                      className="btn btn-outline-secondary"
+                      onClick={(e) => handleDelete(e, post.id)}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
+              </li>
+            </Link>
+          ))}
       </ul>
     </div>
   );

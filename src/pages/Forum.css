@@ -7,6 +7,25 @@
   padding-bottom: 100px;
 }
 
+.posts-search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
+/* using !important to override bootstrap css */
+.search-posts-input {
+  padding: 10px !important;
+  font-size: 20px !important;
+  text-indent: 10px;
+  width: 96% !important;
+}
+.search-posts-input:focus {
+  box-shadow: 0 0 10px rgb(57, 38, 14) !important;
+  border: none;
+}
+
 .thread {
   box-shadow: 0 0 10px rgb(57, 38, 14);
   margin: 25px 0;
