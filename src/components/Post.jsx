@@ -29,7 +29,7 @@ export default function Post({ username, isUserLoggedIn }) {
     const formattedPosts = querySnapshot.docs.map((doc) => {
       return { id: doc.id, ...doc.data() };
     });
-    console.log("formattedPosts =>", formattedPosts[0]);
+    // console.log("formattedPosts =>", formattedPosts[0]);
     setPost(formattedPosts[0]);
   }
 
@@ -53,7 +53,7 @@ export default function Post({ username, isUserLoggedIn }) {
         const postData = postDoc.data();
         const updatedComments = [...postData.comments, newComment];
         await updateDoc(postRef, { comments: updatedComments });
-        console.log("Comment added");
+        // console.log("Comment added");
         // for refreshing the page right after adding the comment
         getPost();
         // clear the comment box after adding the comment
@@ -75,7 +75,7 @@ export default function Post({ username, isUserLoggedIn }) {
           (comment) => comment.id !== id
         );
         await updateDoc(postRef, { comments: updatedComments });
-        alert("Comment deleted");
+        console.log("Comment deleted");
         getPost();
       } else {
         console.error("Document does not exist");

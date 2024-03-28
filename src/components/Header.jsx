@@ -75,6 +75,7 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
             flexWrap: "wrap",
             gap: "20px",
             width: "150px",
+            marginRight: "20px",
           }}
         >
           <p>{displayName}</p>

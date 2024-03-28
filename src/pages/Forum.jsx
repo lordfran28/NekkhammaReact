@@ -12,18 +12,19 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
   useEffect(getPosts, []);
 
   function getPosts() {
-    console.log("Forum component is mounted and state is empty", posts);
+    // console.log("Forum component is mounted and state is empty", posts);
     // Whatver we do here, is done after the component is rendered
     getDocs(collection(db, "posts")).then((querySnapshot) => {
-      console.log("Firestore DB returned data:", querySnapshot.docs);
+      // console.log("Firestore DB returned data:", querySnapshot.docs);
       const formatted = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(
-        "Formatted data that a normal person can understand:",
-        formatted
-      );
+      // console.log(
+      //   "Formatted data that a normal person can understand:",
+      //   formatted
+      // );
+
       // sorting the post by time
       const sorted = formatted.toSorted((a, b) => b.createdAt - a.createdAt);
       setPosts(sorted);

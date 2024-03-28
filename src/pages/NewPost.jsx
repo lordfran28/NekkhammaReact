@@ -41,6 +41,7 @@ export default function NewPost({ username, currentUserId }) {
     // firebase firestore logic here for adding post to the DB
     try {
       const docRef = await addDoc(collection(db, "posts"), {
+        docId: docRef.id,
         userId: currentUserId,
         author: username,
         title: newPost.title,
@@ -48,7 +49,7 @@ export default function NewPost({ username, currentUserId }) {
         createdAt: Date.now(),
         comments: [],
       });
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
       navigate("/forum");
     } catch (e) {
       alert("Error adding document: ", e.message);
