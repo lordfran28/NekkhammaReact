@@ -20,6 +20,21 @@
   margin: 20px 0;
 }
 
+.post__postInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.post__postInfo .postAuthor {
+  font-weight: bold;
+}
+
+.post__postDateAndTime {
+  font-size: 12px;
+}
+
 .comments-section {
   border-radius: 10px;
   background: linear-gradient(to bottom right, #6c4d38, #ffffff);

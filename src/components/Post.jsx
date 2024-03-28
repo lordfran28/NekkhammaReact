@@ -30,10 +30,6 @@ export default function Post({ username, isUserLoggedIn }) {
       return { id: doc.id, ...doc.data() };
     });
     console.log("formattedPosts =>", formattedPosts[0]);
-    // sorting the post by time
-    const sorted = formattedPosts[0].comments.toSorted(
-      (a, b) => b.createdAt - a.createdAt
-    );
     setPost(formattedPosts[0]);
   }
 
@@ -109,10 +105,10 @@ export default function Post({ username, isUserLoggedIn }) {
               <strong style={{ fontSize: "22px" }}>{comment.author}</strong>
               <div style={{ fontSize: "12px" }}>
                 <span style={{ marginRight: "15px" }}>
-                  {new Date(post.createdAt).toLocaleDateString("en")}
+                  {new Date(comment.createdAt).toLocaleDateString("en")}
                 </span>
                 <span>
-                  {new Date(post.createdAt).toLocaleString("en", {
+                  {new Date(comment.createdAt).toLocaleString("en", {
                     hour: "numeric",
                     minute: "numeric",
                   })}
@@ -142,6 +138,20 @@ export default function Post({ username, isUserLoggedIn }) {
           <div className="post">
             <h2 className="postTitle">{post?.title}</h2>
             <p className="postBody">{post?.body}</p>
+            <div className="post__postInfo">
+              <div className="postAuthor">Author: {post?.author}</div>
+              <div className="post__postDateAndTime">
+                <span style={{ marginRight: "15px" }}>
+                  {new Date(post?.createdAt).toLocaleDateString("en")}
+                </span>
+                <span>
+                  {new Date(post?.createdAt).toLocaleString("en", {
+                    hour: "numeric",
+                    minute: "numeric",
+                  })}
+                </span>
+              </div>
+            </div>
           </div>
           <div className="comments-section">
             {isUserLoggedIn && (
