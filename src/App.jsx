@@ -16,6 +16,8 @@ import "./App.css";
 
 export default function App() {
   const [username, setuserName] = useState("");
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState("");
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -23,33 +25,53 @@ export default function App() {
       if (user) {
         const username = user.email.split("@")[0];
         setuserName(username);
+        setIsUserLoggedIn(true);
+        setCurrentUserId(user.uid);
       } else {
         console.log("User is signed out");
       }
     });
   }, []);
 
-
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
+        <Route
+          element={
+            <Layout
+              setIsUserLoggedIn={setIsUserLoggedIn}
+              setuserName={setuserName}
+              username={username}
+            />
+          }
+        >
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/forum" element={<Forum />} />
+          <Route
+            path="/forum"
+            element={
+              <Forum
+                isUserLoggedIn={isUserLoggedIn}
+                currentUserId={currentUserId}
+              />
+            }
+          />
           <Route
             path="/forum/:id"
-            element={<Post />}
+            element={
+              <Post username={username} isUserLoggedIn={isUserLoggedIn} />
+            }
           />
           <Route path="/essays" element={<Essays />} />
           <Route path="/paliCanon" element={<PaliCanon />} />
           <Route
             path="/newPost"
-            element={<NewPost  username={username} />}
+            element={
+              <NewPost username={username} currentUserId={currentUserId} />
+            }
           />
+          <Route path="/signin" element={<SignIn />} />
         </Route>
-        <Route path="/signin" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   );

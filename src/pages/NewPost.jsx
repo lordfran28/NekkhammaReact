@@ -1,17 +1,17 @@
 import "./NewPost.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-export default function NewPost({ username }) {
+export default function NewPost({ username, currentUserId }) {
+  const navigate = useNavigate();
   const [newPost, setNewPost] = useState({
+    userId: currentUserId,
     author: username,
     title: "",
     body: "",
     createdAt: Date.now(),
-    // comments: [{ id: 1, user: "Rakesh", body: "Hello React!" }],
     comments: [],
   });
 
@@ -40,15 +40,17 @@ export default function NewPost({ username }) {
     // firebase firestore logic here for adding post to the DB
     try {
       const docRef = await addDoc(collection(db, "posts"), {
+        userId: currentUserId,
         author: username,
         title: newPost.title,
         body: newPost.body,
         createdAt: Date.now(),
         comments: [],
       });
-      alert("Document written with ID: ", docRef.id);
+      console.log("Document written with ID: ", docRef.id);
+      navigate("/forum");
     } catch (e) {
-      console.log("Error adding document: ", e);
+      console.log("Error adding document: ", e.message);
     }
   }
 
@@ -70,11 +72,10 @@ export default function NewPost({ username }) {
         className="newPost__postInput"
         onChange={handleChange}
       />
-      <Link to="/forum">
-        <button className="newPost__button" onClick={post}>
-          Post
-        </button>
-      </Link>
+
+      <button className="newPost__button" onClick={post}>
+        Post
+      </button>
     </div>
   );
 }

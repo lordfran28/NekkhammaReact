@@ -1,23 +1,10 @@
-import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
-import { app } from "../firebase";
 import logo1 from "../assets/logo1.png";
+import DropdownUserMenu from "./DropdownUserMenu";
 
-export default function Header() {
-  const [username, setuserName] = useState("");
-
-  useEffect(() => {
-    const auth = getAuth(app);
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const username = user.email.split("@")[0];
-        setuserName(username);
-      } else {
-        console.log("User is signed out");
-      }
-    });
-  }, []);
+export default function Header({ setIsUserLoggedIn, setuserName, username }) {
+  // const navigate = useNavigate();
 
   function handleSignOut() {
     const auth = getAuth();
@@ -26,6 +13,8 @@ export default function Header() {
         .then(() => {
           setuserName("");
           console.log("Sign-out successful");
+          setIsUserLoggedIn(false);
+          // navigate("/");
         })
         .catch((error) => {
           console.log("An error happened. while loggin out", error);
@@ -44,9 +33,11 @@ export default function Header() {
   // user sign-in status
   let signInStatus = username ? "Sign Out" : "Sign In";
   return (
-    <>
+    <div>
       <header>
-        <img src={logo1} className="logo" alt="logo" />
+        <Link to="/">
+          <img src={logo1} className="logo" alt="logo" />
+        </Link>
       </header>
       <nav>
         <ul className="navText">
@@ -60,11 +51,7 @@ export default function Header() {
               About
             </Link>
           </li>
-          <li>
-            <Link className="navLink" to="/forum">
-              Forum
-            </Link>
-          </li>
+
           <li>
             <Link className="navLink" to="/essays">
               Essays
@@ -75,16 +62,31 @@ export default function Header() {
               Pali Canon
             </Link>
           </li>
-          <li className="sign-in-out navLink">
-            <div style={{ display: "flex", gap: "20px" }}>
-              <p>{displayName}</p>
-              <Link to={!username && "/signin"}>
-                <p onClick={handleSignOut}>{signInStatus}</p>
-              </Link>
-            </div>
+          <li>
+            <Link className="navLink" to="/forum">
+              Forum
+            </Link>
           </li>
+          {/* <li className="sign-in-out navLink"></li> */}
         </ul>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "20px",
+            width: "150px",
+            marginRight: "20px",
+          }}
+        >
+          <p>{displayName}</p>
+          <Link to={!username && "/signin"}>
+            <p onClick={handleSignOut}>{signInStatus}</p>
+          </Link>
+        </div>
+        {/* <div className="dropdown-container">
+          <DropdownUserMenu />
+        </div> */}
       </nav>
-    </>
+    </div>
   );
 }
