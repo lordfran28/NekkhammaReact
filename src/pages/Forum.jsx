@@ -42,7 +42,7 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
     }
   }
 
-  if (posts.length === 0) return <Spinner />;
+  // if (posts) return <Spinner />;
 
   return (
     <div className="forumContainer container">
@@ -91,12 +91,22 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
                   </div>
 
                   {isUserLoggedIn && post.userId === currentUserId && (
+                    <>
                     <button
                       className="btn btn-outline-secondary"
                       onClick={(e) => handleDelete(e, post.id)}
                     >
                       Delete
                     </button>
+
+                    <button  className="btn btn-outline-secondary">
+                      <Link
+                        to={`/forum/${post.id}`}
+                      >
+                        Edit
+                      </Link>
+                    </button>
+                    </>
                   )}
                 </div>
               </li>

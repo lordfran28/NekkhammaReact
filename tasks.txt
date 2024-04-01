@@ -1,0 +1,8 @@
+To do:
+
+1. design pop up for Are you sure? On Delete button. 
+2. Create delete link for inside post (same desing as edit/copy paste). 
+3. Make page where edit takes place. 
+4. lINK ALL EDIT BUTTON TO THAT PAGE. 
+6.Perfect sign in. It should have pop ups for 'wrong email' (as opposed to not do anything.) WORK ON USERNAME. No email. 
+5. Start thinking about designing  new page for webcam/audio connection. 
