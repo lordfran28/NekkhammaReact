@@ -66,6 +66,9 @@ export default function Post({ username, isUserLoggedIn }) {
     }
   }
   async function deleteComment(id) {
+    // delete warning pop up
+    if (!window.confirm("Are you sure you want to delete this comment?"))
+      return;
     const postRef = doc(db, "posts", post.id);
     try {
       const postDoc = await getDoc(postRef);
@@ -142,12 +145,7 @@ export default function Post({ username, isUserLoggedIn }) {
             <h2 className="postTitle">{post?.title}</h2>
             <p className="postBody">{post?.body}</p>
             <div className="post__postInfo">
-              <div className="postAuthor" style={{ display: "flex", flexDirection: "column", gap: "10px"}}>
-                <span>Author: {post?.author}</span>
-                <span onClick={handleEditPost} style={{ marginRight: "15px",  textDecoration: "underline", cursor: "pointer", color: "Blue", fontSize: "16px", fontStyle: "italic", }}>
-                  Edit 
-                </span >
-              </div>
+              <span className="postAuthor">Author: {post?.author}</span>
               <div className="post__postDateAndTime">
                 <span style={{ marginRight: "15px" }}>
                   {new Date(post?.createdAt).toLocaleDateString("en")}

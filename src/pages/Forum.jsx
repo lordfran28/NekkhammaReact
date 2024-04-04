@@ -4,6 +4,7 @@ import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { Spinner } from "../components/Spinner";
+import ForumEditor from "../components/ForumEditor";
 
 export default function Forum({ isUserLoggedIn, currentUserId }) {
   const [posts, setPosts] = useState([]);
@@ -34,6 +35,8 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
   async function handleDelete(e, id) {
     e.preventDefault();
     const postRef = doc(db, "posts", id);
+    // warning pop up
+    if (!window.confirm("Are you sure you want to delete this post?")) return;
     try {
       await deleteDoc(postRef);
       getPosts();
@@ -42,10 +45,13 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
     }
   }
 
-  // if (posts) return <Spinner />;
+  function handleEdit(e) {
+    e.preventDefault();
+  }
 
   return (
     <div className="forumContainer container">
+      {!posts.length && <Spinner />}
       {isUserLoggedIn && (
         <Link to="/newPost">
           <button className="startADiscussionButton">Start a discussion</button>
@@ -92,20 +98,16 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
 
                   {isUserLoggedIn && post.userId === currentUserId && (
                     <>
-                    <button
-                      className="btn btn-outline-secondary"
-                      onClick={(e) => handleDelete(e, post.id)}
-                    >
-                      Delete
-                    </button>
-
-                    <button  className="btn btn-outline-secondary">
-                      <Link
-                        to={`/forum/${post.id}`}
+                      <button
+                        className="btn btn-outline-secondary"
+                        onClick={(e) => handleDelete(e, post.id)}
                       >
-                        Edit
-                      </Link>
-                    </button>
+                        Delete
+                      </button>
+
+                      <div onClick={(e) => handleEdit(e)}>
+                        <ForumEditor postId={post.id} getPosts={getPosts} />
+                      </div>
                     </>
                   )}
                 </div>
