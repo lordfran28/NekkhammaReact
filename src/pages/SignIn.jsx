@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -24,9 +24,8 @@ export default function SignIn() {
         console.log("User was registerd successfully!", user);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        console.log(error.message);
+        alert("Wrong email or password");
       });
   }
 
@@ -41,82 +40,57 @@ export default function SignIn() {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("oops! ", errorCode, errorMessage);
+        console.log(error.message);
+        alert("Wrong email or password");
       });
   }
 
   return (
-    // <div className="logInContainer">
-    //   <h2>Registration</h2>
-    //   <input
-    //     type="email"
-    //     placeholder="email"
-    //     id="emailInput"
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   />
-    //   <br />
-    //   <input
-    //     type="password"
-    //     placeholder="password"
-    //     id="passwordInput"
-    //     onChange={(e) => setPassword(e.target.value)}
-    //   />
-    //   <br />
-    //   <button id="signInBtn" onClick={signIn}>
-    //     Sign in
-    //   </button>
-    //   <button id="enterBtn" onClick={register}>
-    //     Register
-    //   </button>
-    // </div>
     <div>
-    <Link to="/">
-      <Button variant="outline-warning" style={{margin: "20px"}}>
+      <Link to="/">
+        <Button variant="outline-warning" style={{ margin: "20px" }}>
           Back
         </Button>
-        </Link>
-    <div className="container" style={{marginLeft: "200px"}}>
-    
-      <h1 style={{ marginTop: "50px" }}>Login</h1>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+      </Link>
+      <div className="container" style={{ marginLeft: "200px" }}>
+        <h1 style={{ marginTop: "50px" }}>Login</h1>
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button
-          variant="outline-dark"
-          style={{ marginRight: "10px" }}
-          onClick={signIn}
-        >
-          Login
-        </Button>
-        
-        <Button variant="outline-dark" onClick={register}>
-          Register
-        </Button>
-      </Form>
-    </div>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Check me out" />
+          </Form.Group>
+          <Button
+            variant="outline-dark"
+            style={{ marginRight: "10px" }}
+            onClick={signIn}
+          >
+            Login
+          </Button>
+
+          <Button variant="outline-dark" onClick={register}>
+            Register
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }
