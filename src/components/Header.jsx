@@ -1,5 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo1 from "../assets/logo1.png";
 import DropdownUserMenu from "./DropdownUserMenu";
 
@@ -32,40 +32,64 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
 
   // user sign-in status
   let signInStatus = username ? "Sign Out" : "Sign In";
+
+  const activeStyles = {
+    fontWeight: "bold",
+  };
   return (
     <div>
       <header>
-        <Link to="/">
+        <NavLink to="/">
           <img src={logo1} className="logo" alt="logo" />
-        </Link>
+        </NavLink>
       </header>
       <nav>
         <ul className="navText">
           <li>
-            <Link className="navLink" to="/">
+            <NavLink
+              className="navLink"
+              to="/"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="navLink" to="/about">
+            <NavLink
+              className="navLink"
+              to="/about"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
               About
-            </Link>
+            </NavLink>
           </li>
 
           <li>
-            <Link className="navLink" to="/essays">
+            <NavLink
+              className="navLink"
+              to="/essays"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
               Essays
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="navLink" to="/paliCanon">
+            <NavLink
+              className="navLink"
+              to="/paliCanon"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
               Pali Canon
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="navLink" to="/forum">
+            <NavLink
+              className="navLink"
+              to="/forum"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
               Forum
-            </Link>
+            </NavLink>
           </li>
           {/* <li className="sign-in-out navLink"></li> */}
         </ul>
@@ -79,9 +103,9 @@ export default function Header({ setIsUserLoggedIn, setuserName, username }) {
           }}
         >
           <p>{displayName}</p>
-          <Link to={!username && "/signin"}>
+          <NavLink to={!username && "/signin"}>
             <p onClick={handleSignOut}>{signInStatus}</p>
-          </Link>
+          </NavLink>
         </div>
         {/* <div className="dropdown-container">
           <DropdownUserMenu />

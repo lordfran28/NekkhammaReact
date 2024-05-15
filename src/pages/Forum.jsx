@@ -11,7 +11,6 @@ export default function Forum({ isUserLoggedIn, currentUserId }) {
   const [postSearch, setPostSearch] = useState("");
 
   useEffect(getPosts, []);
-
   function getPosts() {
     // console.log("Forum component is mounted and state is empty", posts);
     // Whatver we do here, is done after the component is rendered
